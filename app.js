@@ -13,11 +13,12 @@ function requestLoggerMiddleware({ method, path, ip }, res, next) {
 app.use(express.static(__dirname + '/public'));
 app.use(requestLoggerMiddleware);
 
-// Routes
+// HTML
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+// JSON
 app.get('/json', (req, res) => {
   const message = 'Hello world!';
 
@@ -29,6 +30,7 @@ app.get('/json', (req, res) => {
   });
 });
 
+// Time server
 app.get(
   '/now',
   (req, res, next) => {
@@ -41,6 +43,13 @@ app.get(
     });
   }
 );
+
+// Get route parameter input from the client
+app.get('/:word/echo', (req, res) => {
+  res.json({
+    echo: req.params.word,
+  });
+});
 
 const PORT = process.env.PORT || 5000;
 
