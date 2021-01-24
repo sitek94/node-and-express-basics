@@ -29,6 +29,19 @@ app.get('/json', (req, res) => {
   });
 });
 
+app.get(
+  '/now',
+  (req, res, next) => {
+    req.time = new Date().toString();
+    next();
+  },
+  (req, res) => {
+    res.send({
+      time: req.time,
+    });
+  }
+);
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
