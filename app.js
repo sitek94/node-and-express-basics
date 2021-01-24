@@ -54,11 +54,21 @@ app.get('/:word/echo', (req, res) => {
 });
 
 // Get query parameter input
-app.route('/name').get((req, res) => {
-  res.json({
-    name: `${req.query.first} ${req.query.last}`,
+app
+  .route('/name')
+  // GET
+  .get((req, res) => {
+    res.json({
+      name: `${req.query.first} ${req.query.last}`,
+    });
+  })
+  // POST
+  .post((req, res) => {
+    const { first, last } = req.body;
+    res.json({
+      name: `${first} ${last}`,
+    });
   });
-});
 
 const PORT = process.env.PORT || 5000;
 
