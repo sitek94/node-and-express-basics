@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 
 const app = express();
@@ -10,9 +11,12 @@ app.get('/', (req, res) => {
 
 app.get('/json', (req, res) => {
   const message = 'Hello world!';
-
+  
   res.json({
-    message,
+    message:
+      process.env.MESSAGE_STYLE === 'uppercase'
+        ? message.toUpperCase()
+        : message,
   });
 });
 
