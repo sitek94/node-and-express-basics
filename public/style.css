@@ -9,6 +9,15 @@ h1 {
   font-size: 4em;
 }
 
-input[type=text], label {
+input[type='text'],
+label {
   margin-bottom: 8px;
+}
+
+input[type='submit'] {
+  margin-bottom: 20px;
+}
+
+a {
+  color: cornflowerblue;
 }
