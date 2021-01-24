@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -12,6 +13,7 @@ function requestLoggerMiddleware({ method, path, ip }, res, next) {
 // Middlewares
 app.use(express.static(__dirname + '/public'));
 app.use(requestLoggerMiddleware);
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // HTML
 app.get('/', (req, res) => {
