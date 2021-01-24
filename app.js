@@ -44,10 +44,17 @@ app.get(
   }
 );
 
-// Get route parameter input from the client
+// Get route parameter input
 app.get('/:word/echo', (req, res) => {
   res.json({
     echo: req.params.word,
+  });
+});
+
+// Get query parameter input
+app.route('/name').get((req, res) => {
+  res.json({
+    name: `${req.query.first} ${req.query.last}`,
   });
 });
 
